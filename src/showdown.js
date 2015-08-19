@@ -986,11 +986,11 @@ var _DoHeaders = function(text) {
 	//
 	text = text.replace(/^(.+)[ \t]*\n=+[ \t]*\n+/gm,
 		//function(wholeMatch,m1){return hashBlock('<h1 id="' + headerId(m1) + '">' + _RunSpanGamut(m1) + "</h1>");});
-		function(wholeMatch, m1){return hashBlock("[big]"+_RunSpanGamut(m1)+"[/big]");});
+		function(wholeMatch, m1){return hashBlock("[b]"+_RunSpanGamut(m1)+"[/b]");});
 
 	text = text.replace(/^(.+)[ \t]*\n-+[ \t]*\n+/gm,
 		//function(matchFound,m1){return hashBlock('<h2 id="' + headerId(m1) + '">' + _RunSpanGamut(m1) + "</h2>");});
-		function(matchFound, m1){return hashBlock("[big]"+_RunSpanGamut(m1)+"[/big]");});
+		function(matchFound, m1){return hashBlock("[b]"+_RunSpanGamut(m1)+"[/b]");});
 
 	// atx-style headers:
 	//  # Header 1
@@ -1015,12 +1015,12 @@ var _DoHeaders = function(text) {
 		function(wholeMatch,m1,m2) {
 			var h_level = m1.length;
 			//return hashBlock("<h" + h_level + ' id="' + headerId(m2) + '">' + _RunSpanGamut(m2) + "</h" + h_level + ">");
-			if(h_level>3) //1,2 => [big], 3 => [small]
+			if(h_level>3) //1,2 => [b], 3 => [small]
 				return hashBlock(_RunSpanGamut(m2));
 			else if(h_level == 3)
 				return hashBlock("[small]"+_RunSpanGamut(m2)+"[/small]");
 			else //h_level won't be negative
-				return hashBlock("[big]"+_RunSpanGamut(m2)+"[/big]");
+				return hashBlock("[b]"+_RunSpanGamut(m2)+"[/b]");
 		});
 
 	function headerId(m) {
@@ -1375,7 +1375,7 @@ var _DoItalicsAndBold = function(text) {
 		//now it shouldn't match [*] (lists points)
 		/(\*|_)(?=\S)([^\]\r]*?\S)\1/g,
 		//"<em>$2</em>");
-		"[cur]$2[/cur]");
+		"[em]$2[/em]");
 
 	return text;
 }
